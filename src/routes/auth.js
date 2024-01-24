@@ -29,7 +29,7 @@ router.post("/register", async (req, res) => {
     });
     try {
         const savedUser = await user.save();
-        res.send({user: user._id});
+        res.send({userId: user._id});
     } catch (error) {
         res.status(400).send(error);
     }
@@ -61,7 +61,9 @@ router.post("/login", async (req, res) => {
             expiresIn: "1m"
         });
 
-        res.status(200).header("auth-token", token).send(token);
+        res.status(200).header("auth-token", token).send({
+            token: token
+        });
 });
 
 module.exports = router;

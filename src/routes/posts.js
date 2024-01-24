@@ -3,10 +3,10 @@ const verifyToken = require("./verify-token");
 
 router.get("/", verifyToken, (req, res) => {
     res.json({
-        posts: {
+        posts: [{
             title: "Hello World",
             description: "Nothing to say"
-        }
+        }]
     })
 })
 
