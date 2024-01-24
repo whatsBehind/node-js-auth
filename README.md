@@ -2,6 +2,9 @@
 
 This project is for learning purpose. It is a practice of how to use JWT (Json Web Token) to authenticate user. 
 
+## Demo
+[demo](https://github.com/whatsBehind/node-js-auth/assets/148703191/d0fa30ab-282b-4f7c-9b8d-0d81799f5cb9)
+
 ## Tech Stack
 - Node.js
 - Express: Quickly start a local host
