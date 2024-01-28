@@ -150,7 +150,7 @@ OAuth2 is a open standard for access delegation, which is commonly used as the w
 - Authorization Server: The server that authenticate user and issues access token to the application
 
 ### How OAuth2 works
-
+![image](/node-js-auth/static/oauth2/oauth2-authorization.svg)
 - Authorization Request
     - The client requests authorization to access user's resources. This is usually done through a redirection, where client passes along its identity (client id) and the scope of the access it's requesting
 
