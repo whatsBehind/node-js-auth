@@ -11,15 +11,17 @@ mongoose.connect(
 );
 
 // Import Routes
-const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
 const postRoute = require("./routes/posts");
+const oauthRoute = require("./routes/oauth");
 
 // Middlewares
 // TODO: What does below code do?
 app.use(express.json());
 
 // Routes Middlewares
-app.use("/api/user", authRoute);
+app.use("/api/user", userRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/oauth", oauthRoute);
 
 app.listen(9999, console.log("The server is up and running!"));

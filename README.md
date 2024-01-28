@@ -1,20 +1,23 @@
 # Introduction
 
-This project is for learning purpose. It is a practice of how to use JWT (Json Web Token) to authenticate user. 
-
-## Demo
-[demo](https://github.com/whatsBehind/node-js-auth/assets/148703191/d0fa30ab-282b-4f7c-9b8d-0d81799f5cb9)
+This project is for learning purpose. It is a practice of 
+1. how to use JWT (Json Web Token) to authenticate user
+2. Login with Google using OAuth2
 
 ## Tech Stack
-- Node.js
-- Express: Quickly start a local host
-- MongoDB/Mongoose: Database to store users
-- @hapi/joi: Package to validate parameters of objects
-- bcryptjs: Hash confidential information including password in this project
-- jsonwebtoken: JWT package to sign and verify a auth token
+- `Node.js`
+- `Express`: Quickly start a local host
+- `MongoDB/Mongoose`: Database to store users
+- `@hapi/joi`: Package to validate parameters of objects
+- `bcryptjs`: Hash confidential information including password in this project
+- `jsonwebtoken`: JWT package to sign and verify a auth token
+- `axios`: Send HTTP requests
+- `querystring`: Package to parse and assembly query string in HTTP request
 
 ## Reference
-- [YouTube Video](https://www.youtube.com/watch?v=2jqok-WgelI): Very nice video which guide mes step by step to build this project
+- [Implement JWT using node.js and express](https://www.youtube.com/watch?v=2jqok-WgelI): Very nice video which guide mes step by step to build this project
+- [Google OAuth2 with node.js](https://www.youtube.com/watch?v=Qt3KJZ2kQk0&t=6s): Video that explain and implement OAuth2 flow from end to end
+- [OAuth 2.0 and OpenID Connect](https://www.youtube.com/watch?v=996OiexHze0): Plain English explain the evolution of OAuth2 and OpenID Connect
 
 ## What Is JWT?
 A JWT (JSON Web Token) is like a compact digital note or a small piece of data that web servers and clients (like your browser or a mobile app) use to communicate secure information. It's like a tiny, encoded message.
@@ -123,3 +126,65 @@ A JWT is made up of three parts, each encoded in base64 and separated by dots (`
     - Return a hard-coded post object
 
 After users login, server signs a JWT to users. By include the JWT in the request headers, server could verify it to determine if user is authenticated (login)
+
+## OAuth2
+
+### What is OAuth2?
+
+OAuth2 is a open standard for access delegation, which is commonly used as the way for internet user to grant a client or application access to their resources under another server without sharing their passwords
+
+### Why OAuth2?
+
+- Secure Delegation of Access: Users often need to grant a third party website or application access to their data on another service (like accessing your google account from a social media app). Sharing credentials for this purpose is highly insecure
+
+- Fine Grained Authorization: User may not want to give full access of their all data
+
+- Standardization and Interoperability: With requirements of authentication and authorization from many internet service, a standard way is needed
+
+- Reducing Password Fatigue: Users are overwhelmed by the need to create username and password for each single service
+
+### Key Components of OAuth2
+- Resource Owner: The user who authorize an application to access their account
+- Client: The application that wants to access user's account
+- Resource Server: The server hosting user's data
+- Authorization Server: The server that authenticate user and issues access token to the application
+
+### How OAuth2 works
+
+- Authorization Request
+    - The client requests authorization to access user's resources. This is usually done through a redirection, where client passes along its identity (client id) and the scope of the access it's requesting
+
+- User Authenticate and Consent
+    - The user is asked to login to the authorization server and to approve the requested access by the client
+
+- Authorization Grant
+    - Upon successful authentication and consent, authorization server issues an authorization grant to the client. The authorization grant can be of different type, like an authorization code or an implicit grant, depending on the OAuth flow being used
+
+- Access Token Request (In case of authorization code grant)
+    - If an authorization code is granted, then client exchanges the code for an access token. This is done by sent a request to authorization server's token endpoint where client authenticates itself and presents the authorization code
+
+- Issuance of Access Token
+    - The authorization server authenticates the client validates the authorization grant and if valid issues an access token (and possibly a refresh token)
+
+- Accessing the Resource 
+    - The client uses access to token to make a request to the resource server for the protected resources
+
+- Resource Server Validates Token
+    - The resource server validates the token and if valid serves the request
+
+- Resource Deliver 
+    - The client receives the protected resources
+
+### Why OpenID Connect
+OAuth2 was originally designed for authorization, but not for authentication. Different companies have their own standards to authenticate users using OAuth2, in other words, OAuth2 is overused for authentication. 
+
+OpenID Connect is an authentication layer built on top of OAuth2. It was developed to address the need for a standardized authentication process.
+
+### How OpendID Connect works
+- Authentication Request
+    - The client includes `openid` in the scope of the authorization request. That indicates that the client is requesting an ID token in addition to access token
+- Token Response 
+    - Access Token: Just like OAuth2, access token is issued by the authorization server. This token grants access to user's resources
+    - ID Token: This is unique to OpenID Connect. The ID token is a JWT which contains claims about user's identity and profile
+Token Validation
+    - Upon receiving the tokens, the client must validate the ID tokens to ensure its integrity and authenticity. This involves verifying JWT signature and the claims it contains
