@@ -2,22 +2,22 @@
 
 This project is for learning purpose. It is a practice of 
 1. how to use JWT (Json Web Token) to authenticate user
-2. Login with Google using OAuth2
+2. login with Google using OAuth2
 
 ## Tech Stack
 - `Node.js`
 - `Express`: Quickly start a local host
 - `MongoDB/Mongoose`: Database to store users
 - `@hapi/joi`: Package to validate parameters of objects
-- `bcryptjs`: Hash confidential information including password in this project
+- `bcryptjs`: Hash confidential information including passwords in this project
 - `jsonwebtoken`: JWT package to sign and verify a auth token
 - `axios`: Send HTTP requests
 - `querystring`: Package to parse and assembly query string in HTTP request
 
 ## Reference
-- [Implement JWT using node.js and express](https://www.youtube.com/watch?v=2jqok-WgelI): Very nice video which guide mes step by step to build this project
-- [Google OAuth2 with node.js](https://www.youtube.com/watch?v=Qt3KJZ2kQk0&t=6s): Video that explain and implement OAuth2 flow from end to end
-- [OAuth 2.0 and OpenID Connect](https://www.youtube.com/watch?v=996OiexHze0): Plain English explain the evolution of OAuth2 and OpenID Connect
+- [Implement JWT using node.js and express](https://www.youtube.com/watch?v=2jqok-WgelI): Very nice video which guides me step by step to build this project
+- [Google OAuth2 with node.js](https://www.youtube.com/watch?v=Qt3KJZ2kQk0&t=6s): Video that explains and implements OAuth2 flow from end to end
+- [OAuth 2.0 and OpenID Connect](https://www.youtube.com/watch?v=996OiexHze0): Plain English explains the evolution of OAuth2 and OpenID Connect
 
 ## What Is JWT?
 A JWT (JSON Web Token) is like a compact digital note or a small piece of data that web servers and clients (like your browser or a mobile app) use to communicate secure information. It's like a tiny, encoded message.
@@ -29,7 +29,7 @@ A JWT is made up of three parts, each encoded in base64 and separated by dots (`
 - **Payload**: The payload contains information of the identity, like id, isa(issuedAt), and etc...
 - **Signature**: This is the secure part of JWT. It is created by taking encoded header, encoded payload, a secret only known by the server, then running it through the signing algorithm mentioned in the header. If the algorithm is 
     - Symmetric algorithm (like `HS256`): The same secret is used for signing and verification
-    - Asymmetric algorithm (like `RS256`): a private key will be used for signing, and a corresponding public key will be used for verification
+    - Asymmetric algorithm (like `RS256`): A private key will be used for signing, and a corresponding public key will be used for verification
 
 ### Risk of JWT
 - Data is Not Encrypted
@@ -131,7 +131,7 @@ After users login, server signs a JWT to users. By include the JWT in the reques
 
 ### What is OAuth2?
 
-OAuth2 is a open standard for access delegation, which is commonly used as the way for internet user to grant a client or application access to their resources under another server without sharing their passwords
+OAuth2 is an open standard for access delegation, which is commonly used as the way for internet users to grant a client or application access to their resources under another server without sharing their passwords
 
 ### Why OAuth2?
 
@@ -144,10 +144,10 @@ OAuth2 is a open standard for access delegation, which is commonly used as the w
 - Reducing Password Fatigue: Users are overwhelmed by the need to create username and password for each single service
 
 ### Key Components of OAuth2
-- Resource Owner: The user who authorize an application to access their account
+- Resource Owner: The user who authorizes an application to access their account
 - Client: The application that wants to access user's account
 - Resource Server: The server hosting user's data
-- Authorization Server: The server that authenticate user and issues access token to the application
+- Authorization Server: The server that authenticates user and issues access token to the application
 
 ### How OAuth2 works
 ![image](./static/oauth2/oauth2-authorization.svg)
